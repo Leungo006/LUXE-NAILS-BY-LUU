@@ -1,415 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop | Luxe Nails by LU</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #ff6b98;
-            --secondary: #5d2a42;
-            --light: #fff9fb;
-            --dark: #1a1a1a;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 5%;
-            text-align: center;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: white;
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--light);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            padding: 1rem 0;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: var(--primary);
-        }
-        
-        .cart-count {
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-            margin-left: 5px;
-        }
-        
-        .shop-header {
-            text-align: center;
-            padding: 3rem 0;
-        }
-        
-        .shop-header h1 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .shop-header p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .products-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 2rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .product-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-        
-        .product-info {
-            padding: 1.5rem;
-        }
-        
-        .product-category {
-            color: var(--primary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-        
-        .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-        }
-        
-        .product-price {
-            font-weight: bold;
-            font-size: 1.3rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .product-description {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-        
-        .add-to-cart {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        
-        .add-to-cart:hover {
-            background-color: var(--secondary);
-        }
-        
-        .sale-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.3rem 0.7rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            text-align: center;
-            padding: 2rem 5%;
-            margin-top: 3rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-icons a:hover {
-            color: var(--primary);
-        }
-        
-        @media (max-width: 768px) {
-            .products-container {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            
-            nav {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop | Luxe Nails by LU</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">LUXE<span>NAILS</span></a>
-        <p>Premium nail products for professionals and enthusiasts</p>
-    </header>
-    
+  <header>
+    <a href="index.html" class="logo">LUXE<span>NAILS</span></a>
+    <p>Premium nail products for professionals and enthusiasts</p>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="services.html">Services</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="cart-count">0</span></a>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="cart-count">0</span></a>
     </nav>
-    
-    <div class="shop-header">
-        <h1>Our Nail Products</h1>
-        <p>Discover our premium collection of nail polishes, care products, and accessories. Professional quality for salon-perfect nails at home.</p>
-    </div>
-    
-    <div class="products-container">
-        <!-- Product 1 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="images/OIP_(1).jpg" alt="Nail Care Kit">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Care Products</span>
-                <h3 class="product-title">Complete Nail Starter Kit</h3>
-                <p class="product-price">P29.99</p>
-                <p class="product-description">Everything you need for healthy nails: cuticle oil, nail strengthener, buffer, and more.</p>
-                <button class="add-to-cart" data-id="1" data-name="Complete Nail Starter Kit" data-price="29.99">Add to Cart</button>
-            </div>
-        </div>
-        
-        <!-- Product 2 -->
-        <div class="product-card">
-            <div class="sale-badge">Bestseller</div>
-            <div class="product-image">
-                <img src="images/OIP(2).jpg" alt="Nail Art Brushes">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Tools</span>
-                <h3 class="product-title">Professional Nail Art Brush Set</h3>
-                <p class="product-price">P19.99</p>
-                <p class="product-description">10-piece precision brush set for creating stunning nail art designs.</p>
-                <button class="add-to-cart" data-id="2" data-name="Professional Nail Art Brush Set" data-price="19.99">Add to Cart</button>
-            </div>
-        </div>
-        
-        <!-- Product 3 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src=" images/OIP(3).jpg"alt="LED Nail Lamp">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Equipment</span>
-                <h3 class="product-title">48W LED Nail Lamp</h3>
-                <p class="product-price">P59.99</p>
-                <p class="product-description">Professional-grade LED lamp with 4 timer settings for perfect curing every time.</p>
-                <button class="add-to-cart" data-id="3" data-name="48W LED Nail Lamp" data-price="59.99">Add to Cart</button>
-            </div>
-        </div>
-        
-        <!-- Product 4 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="images/OIP(4).jpg" alt="Nail Stickers">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Accessories</span>
-                <h3 class="product-title">Floral Nail Stickers</h3>
-                <p class="product-price">P14.99</p>
-                <p class="product-description">Set of 50 delicate floral nail stickers for easy, beautiful nail art.</p>
-                <button class="add-to-cart" data-id="4" data-name="Floral Nail Stickers" data-price="14.99">Add to Cart</button>
-            </div>
-        </div>
-        
-        <!-- Product 5 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="images/Acetone.jpg" alt="Nail Polish Remover">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Care Products</span>
-                <h3 class="product-title">Acetone-Free Nail Polish Remover</h3>
-                <p class="product-price">P14.99</p>
-                <p class="product-description">Gentle formula that removes polish without drying out your nails.</p>
-                <button class="add-to-cart" data-id="5" data-name="Acetone-Free Nail Polish Remover" data-price="14.99">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-    
-    <footer>
-        <div class="footer-links">
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
-            <a href="shipping-policy.html">Shipping Policy</a>
-        </div>
-        
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-        </div>
-        
-        <p>&copy; 2025 Luxe Nails by LU. All rights reserved.</p>
-    </footer>
+  </header>
 
-    <script>
-        // Cart functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize cart if it doesn't exist
-            if (!localStorage.getItem('cart')) {
-                localStorage.setItem('cart', JSON.stringify([]));
-            }
-            
-            // Update cart count display
-            updateCartCount();
-            
-            // Add to cart buttons
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-id');
-                    const productName = this.getAttribute('data-name');
-                    const productPrice = parseFloat(this.getAttribute('data-price'));
-                    
-                    // Get current cart
-                    let cart = JSON.parse(localStorage.getItem('cart'));
-                    
-                    // Check if product already in cart
-                    const existingItem = cart.find(item => item.id === productId);
-                    
-                    if (existingItem) {
-                        existingItem.quantity += 1;
-                    } else {
-                        cart.push({
-                            id: productId,
-                            name: productName,
-                            price: productPrice,
-                            quantity: 1
-                        });
-                    }
-                    
-                    // Save updated cart
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    
-                    // Update cart count
-                    updateCartCount();
-                    
-                    // Show confirmation and redirect
-                    if (confirm('Item added to cart! Go to cart now?')) {
-                        window.location.href = 'cart.html';
-                    }
-                });
-            });
-            
-            // Function to update cart count
-            function updateCartCount() {
-                const cart = JSON.parse(localStorage.getItem('cart'));
-                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-                document.getElementById('cart-count').textContent = totalItems;
-            }
+  <main class="container my-5">
+    <div class="text-center mb-5">
+      <h1>Our Nail Products</h1>
+      <p class="lead">Discover our premium collection of nail polishes, care products, and accessories. Professional quality for salon-perfect nails at home.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Product 1 -->
+      <div class="col-md-4">
+        <div class="card h-100 product-card">
+          <img src="images/OIP_(1).jpg" class="card-img-top img-fluid" alt="Nail Care Kit">
+          <div class="card-body">
+            <span class="text-muted small">Care Products</span>
+            <h5 class="card-title">Complete Nail Starter Kit</h5>
+            <p class="card-text">Everything you need for healthy nails: cuticle oil, nail strengthener, buffer, and more.</p>
+            <p class="fw-bold">P29.99</p>
+            <button class="btn btn-primary add-to-cart" data-id="1" data-name="Complete Nail Starter Kit" data-price="29.99">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="col-md-4">
+        <div class="card h-100 product-card position-relative">
+          <div class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Bestseller</div>
+          <img src="images/OIP(2).jpg" class="card-img-top img-fluid" alt="Nail Art Brushes">
+          <div class="card-body">
+            <span class="text-muted small">Tools</span>
+            <h5 class="card-title">Professional Nail Art Brush Set</h5>
+            <p class="card-text">10-piece precision brush set for creating stunning nail art designs.</p>
+            <p class="fw-bold">P19.99</p>
+            <button class="btn btn-primary add-to-cart" data-id="2" data-name="Professional Nail Art Brush Set" data-price="19.99">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="col-md-4">
+        <div class="card h-100 product-card">
+          <img src="images/OIP(3).jpg" class="card-img-top img-fluid" alt="LED Nail Lamp">
+          <div class="card-body">
+            <span class="text-muted small">Equipment</span>
+            <h5 class="card-title">48W LED Nail Lamp</h5>
+            <p class="card-text">Professional-grade LED lamp with 4 timer settings for perfect curing every time.</p>
+            <p class="fw-bold">P59.99</p>
+            <button class="btn btn-primary add-to-cart" data-id="3" data-name="48W LED Nail Lamp" data-price="59.99">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="col-md-4">
+        <div class="card h-100 product-card">
+          <img src="images/OIP(4).jpg" class="card-img-top img-fluid" alt="Nail Stickers">
+          <div class="card-body">
+            <span class="text-muted small">Accessories</span>
+            <h5 class="card-title">Floral Nail Stickers</h5>
+            <p class="card-text">Set of 50 delicate floral nail stickers for easy, beautiful nail art.</p>
+            <p class="fw-bold">P14.99</p>
+            <button class="btn btn-primary add-to-cart" data-id="4" data-name="Floral Nail Stickers" data-price="14.99">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="col-md-4">
+        <div class="card h-100 product-card">
+          <img src="images/Acetone.jpg" class="card-img-top img-fluid" alt="Nail Polish Remover">
+          <div class="card-body">
+            <span class="text-muted small">Care Products</span>
+            <h5 class="card-title">Acetone-Free Nail Polish Remover</h5>
+            <p class="card-text">Gentle formula that removes polish without drying out your nails.</p>
+            <p class="fw-bold">P14.99</p>
+            <button class="btn btn-primary add-to-cart" data-id="5" data-name="Acetone-Free Nail Polish Remover" data-price="14.99">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center py-4">
+    <div class="footer-links mb-2">
+      <a href="about.html">About Us</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="shipping-policy.html">Shipping Policy</a>
+    </div>
+    <div class="social-icons mb-2">
+      <a href="#"><i class="fab fa-instagram me-2"></i></a>
+      <a href="#"><i class="fab fa-facebook me-2"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="small">&copy; 2025 Luxe Nails by LU. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', JSON.stringify([]));
+      }
+
+      updateCartCount();
+
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function () {
+          const productId = this.dataset.id;
+          const productName = this.dataset.name;
+          const productPrice = parseFloat(this.dataset.price);
+          let cart = JSON.parse(localStorage.getItem('cart'));
+          const existingItem = cart.find(item => item.id === productId);
+
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+          }
+
+          localStorage.setItem('cart', JSON.stringify(cart));
+          updateCartCount();
+
+          if (confirm('Item added to cart! Go to cart now?')) {
+            window.location.href = 'cart.html';
+          }
         });
-    </script>
+      });
+
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart-count').textContent = totalItems;
+      }
+    });
+  </script>
 </body>
 </html>
